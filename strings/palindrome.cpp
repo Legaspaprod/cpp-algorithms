@@ -23,21 +23,23 @@ int main() {
             return 1;
         }
         numbers.push_back(input);
+
     }
 
-    int max_value = numbers[0];
-    int min_value = numbers[0];
+    bool sorted = true;
 
-    for (const int x : numbers) {
-        if (x > max_value) {
-            max_value = x;
-        } else if (x < min_value) {
-            min_value = x;
+    for (int i = 0; i < inputall - 1; ++i) {
+        if (numbers[i] > numbers[i + 1]) {
+            sorted = false;
+            break;
         }
     }
 
-    std::cout << "Максимальный элемент: " << max_value << "  \n";
-    std::cout << "Разница между максимальным и миниммальным: " << max_value - min_value << " \n";
+    if (sorted) {
+        std::cout << "Да, отсортировано\n";
+    } else {
+        std::cout << "Нет, не отсортировано\n";
+    }
 
     return 0;
 }

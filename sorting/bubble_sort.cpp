@@ -1,21 +1,41 @@
 #include <iostream>
+#include <vector>
 
 int main() {
 
-    int arr[] = {5,2,9,1,3};
-    int size = 5;
+    std::cout << "Введите количество вводимых чисел: \n";
 
-    for(int i = 0; i < size-1; i++) {
-        for(int j = 0; j < size-i-1; j++) {
+    int inputall{};
+    if (!(std::cin >> inputall) || inputall < 1) {
+        std::cout << "Ошибка ввода! Введите количество вводимых чисел. \n ";
+        return 1;
+    }
 
-            if(arr[j] > arr[j+1]) {
-                std::swap(arr[j], arr[j+1]);
-            }
+    std::cout << "Введите числа: \n";
+
+    std::vector<int> numbers;
+    numbers.reserve(inputall);
+
+    int input{};
+    for (int i = 0; i < inputall; ++i) {
+        if (!(std::cin >> input)) {
+            std::cout << "Ошшибка ввода. Вводите только числа. \n";
+            return 1;
+        }
+        numbers.push_back(input);
+    }
+
+    for (int& x : numbers) {
+        if ((x % 2) == 0) {
+            x = 0;
         }
     }
 
-    for(int n : arr)
-        std::cout << n << " ";
+    std::cout << "Итог: \n";
+    for (int x : numbers) {
+        std::cout << x << " ";
+    }
+    std::cout << "\n";
 
     return 0;
 }
